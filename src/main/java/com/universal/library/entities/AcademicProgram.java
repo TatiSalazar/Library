@@ -1,4 +1,4 @@
-package com.universal.library.entity;
+package com.universal.library.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -14,6 +14,7 @@ import java.util.List;
 public class AcademicProgram {
 
     @Id
+    @GeneratedValue
     private Long program_id;
     private String name;
     @ToString.Exclude

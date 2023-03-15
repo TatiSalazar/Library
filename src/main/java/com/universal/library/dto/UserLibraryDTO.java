@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class UserLibraryDTO {
-    private String email;
+    private String userDocument;
     private String password;
 }

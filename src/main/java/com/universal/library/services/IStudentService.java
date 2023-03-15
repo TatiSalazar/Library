@@ -1,6 +1,6 @@
 package com.universal.library.services;
 
-import com.universal.library.entity.Student;
+import com.universal.library.entities.Student;
 
 public interface IStudentService {
     public Student getStudentByDocument(String email);

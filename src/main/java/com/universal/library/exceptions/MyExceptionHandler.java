@@ -20,10 +20,15 @@ public class MyExceptionHandler {
         return new ResponseEntity<>( ex.getMessage(),HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(value = CatalogNotFoundException.class)
-    public ResponseEntity<?> handleExceptionBook(CatalogNotFoundException ex){
+    @ExceptionHandler(value = BookNotFoundException.class)
+    public ResponseEntity<?> handleExceptionBook(BookNotFoundException ex){
 
         return new ResponseEntity<>( ex.getMessage(),HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(value = AvailableBookException.class)
+    public ResponseEntity<?> handleExceptionBook(AvailableBookException ex){
+
+        return new ResponseEntity<>( ex.getMessage(),HttpStatus.NOT_FOUND);
+    }
 }

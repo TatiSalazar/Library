@@ -1,11 +1,13 @@
 package com.universal.library.controller;
 
-import com.universal.library.dto.StudentDTO;
+import com.universal.library.dto.LoanRequestDTO;
+import com.universal.library.dto.LoanResponseDTO;
 import com.universal.library.dto.UserLibraryDTO;
-import com.universal.library.entity.Student;
-import com.universal.library.entity.UserLibrary;
-import com.universal.library.exceptions.UserLibraryNotFoundException;
+import com.universal.library.entities.Loan;
+import com.universal.library.entities.UserLibrary;
+import com.universal.library.exceptions.*;
 import com.universal.library.services.ILibraryService;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
@@ -31,7 +33,7 @@ public class LibraryController {
             (Logger) LoggerFactory.getLogger(LibraryController.class);
 
     @PostMapping("/api/library/users")
-    public ResponseEntity<UserLibraryDTO> saveUserLibrary(@Valid @RequestBody UserLibrary userLibrary) throws UserLibraryNotFoundException {
+    public ResponseEntity<UserLibraryDTO> saveUserLibrary(@Valid @RequestBody UserLibrary userLibrary) throws UserLibraryNotFoundException, UserExistException, StudentNotFoundException {
         Optional<UserLibrary> userLibrarySave = Optional.ofNullable(libraryService.saveUserLibrary(userLibrary));
         UserLibraryDTO userLibraryDTO = modelMapper.map(userLibrarySave, UserLibraryDTO.class);
         if(!userLibrarySave.isPresent()){
@@ -42,13 +44,23 @@ public class LibraryController {
     }
 
     @PostMapping("/api/library/auth")
-    public ResponseEntity<StudentDTO> authUserLibrary(@Valid @RequestBody UserLibrary userLibrary) throws UserLibraryNotFoundException {
-        Optional<Student> student = Optional.ofNullable(libraryService.authUserLibrary(userLibrary));
-        StudentDTO studentDTO = modelMapper.map(student, StudentDTO.class);
-        if(!student.isPresent()){
-            throw new UserLibraryNotFoundException("User of Library not found");
+    @Transactional
+    public String authUserLibrary(@Valid @RequestBody UserLibrary userLibrary) throws UserLibraryNotFoundException, AuthenticatedException {
+        String token = libraryService.authUserLibrary(userLibrary);
+
+        LOGGER.info("User of Library authenticated");
+        return token;
+    }
+    @PostMapping("/api/library/loans")
+    @Transactional
+    public ResponseEntity<LoanResponseDTO> saveLoanLibrary(@Valid @RequestBody LoanRequestDTO loanRequestDTO) throws UserLibraryNotFoundException, LoanSaveException, AuthenticatedException, BookNotFoundException, AvailableBookException {
+        Loan loanTosave = modelMapper.map(loanRequestDTO, Loan.class);
+        Optional<Loan> savedLoan = Optional.ofNullable(libraryService.saveLoanLibrary(loanTosave));
+        LoanResponseDTO loanResponseDTO = modelMapper.map(savedLoan, LoanResponseDTO.class);
+        if(!savedLoan.isPresent()){
+            throw new LoanSaveException("Loan not saved");
         }
-        LOGGER.info("User of Library found");
-        return new ResponseEntity<>(studentDTO, HttpStatus.OK);
+        LOGGER.info("Saved loan");
+        return new ResponseEntity<>(loanResponseDTO, HttpStatus.OK);
     }
 }

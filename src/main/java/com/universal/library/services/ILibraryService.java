@@ -1,12 +1,15 @@
 package com.universal.library.services;
 
-import com.universal.library.entity.Student;
-import com.universal.library.entity.UserLibrary;
-import com.universal.library.exceptions.UserLibraryNotFoundException;
+import com.universal.library.entities.Loan;
+import com.universal.library.entities.Student;
+import com.universal.library.entities.UserLibrary;
+import com.universal.library.exceptions.*;
 
 public interface ILibraryService {
 
-    public UserLibrary saveUserLibrary(UserLibrary userLibrary);
+    public UserLibrary saveUserLibrary(UserLibrary userLibrary) throws StudentNotFoundException, UserExistException;
 
-    public Student authUserLibrary(UserLibrary userLibrary) throws UserLibraryNotFoundException;
+    public String authUserLibrary(UserLibrary userLibrary) throws UserLibraryNotFoundException, AuthenticatedException;
+
+    public Loan saveLoanLibrary(Loan loan) throws AuthenticatedException, BookNotFoundException, AvailableBookException;
 }

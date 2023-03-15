@@ -1,6 +1,6 @@
 package com.universal.library.services;
 
-import com.universal.library.entity.Book;
+import com.universal.library.entities.Book;
 import com.universal.library.repository.ICatalogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,8 +18,8 @@ public class CatalogServiceImpl implements ICatalogService {
     }
 
     @Override
-    public List<Book> getBooksByIsbn(String isbn) {
-        return catalogRepository.findByIsbnIgnoreCaseContaining(isbn);
+    public Book getBooksByIsbn(String isbn) {
+        return catalogRepository.findByIsbn(isbn);
     }
 
     @Override
@@ -38,7 +38,7 @@ public class CatalogServiceImpl implements ICatalogService {
 
         switch (typeQuery) {
             case "isbn":
-                result = catalogRepository.findByIsbnIgnoreCaseContaining(textSearch);
+                result = (List<Book>) catalogRepository.findByIsbnIgnoreCaseContaining(textSearch);
                 break;
             case "title":
                 result = catalogRepository.findByTitleIgnoreCaseContaining(textSearch);

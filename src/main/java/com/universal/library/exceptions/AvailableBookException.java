@@ -4,9 +4,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(value = HttpStatus.NOT_FOUND)
-public class UserExistException extends Exception{
-    public UserExistException(String message){
+public class AvailableBookException extends Exception {
+    public AvailableBookException(String message){
         super(message);
     }
-
 }

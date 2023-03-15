@@ -1,4 +1,4 @@
-package com.universal.library.entity;
+package com.universal.library.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -16,6 +16,7 @@ import java.util.List;
 @Builder
 public class Faculty {
     @Id
+    @GeneratedValue
     private Long faculty_id;
     private String name;
 

@@ -1,4 +1,4 @@
-package com.universal.library.entity;
+package com.universal.library.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class UserLibrary {
     @Id
-    private String email;
+    private String document;
     private String password;
 
 }

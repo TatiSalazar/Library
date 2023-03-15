@@ -1,7 +1,7 @@
 package com.universal.library.services;
 
-import com.universal.library.entity.Student;
-import com.universal.library.repository.StudentRepository;
+import com.universal.library.entities.Student;
+import com.universal.library.repository.IStudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,15 +9,15 @@ import org.springframework.stereotype.Service;
 public class StudentServiceImpl implements IStudentService {
 
     @Autowired
-    private StudentRepository studentRepository;
+    private IStudentRepository IStudentRepository;
 
     @Override
     public Student getStudentByDocument(String document) {
-        return studentRepository.findByDocument(document);
+        return IStudentRepository.findByDocument(document);
     }
     @Override
     public Student getStudentByEmail(String email) {
-        return studentRepository.findByEmail(email);
+        return IStudentRepository.findByEmail(email);
     }
 }
 

@@ -60,11 +60,14 @@ INSERT INTO public.academic_program_students (academic_program_program_id,studen
 	 (3,'22-991-5004'),
 	 (4,'49-187-5020');
 
+INSERT INTO public.book (isbn,author,description,image,location_library,title,volume,available) VALUES
+	 ('123-456-789','Dan Brown','','asdfasdf','CB-715','Inferno',1,true),
+	 ('456-789-123','Edgar Allan Poe','','asdfasdf','ID-963','El cuervo',1,true),
+	 ('789-456-123','Dante Alighieri','','asdfasdf','PD-159','La divina comedia',1,true),
+	 ('789-123-369','Daniel Goleman','','asdfasdf','lk-139','Inteligencia emocional',1,true),
+	 ('147-852-369','Len Bass','','asdfasdf','TU-795','Architecture in practice',1,true),
+	 ('587-963-762','Solomon','','asdfasdf','GB-279','Biología',1,true);
 
-INSERT INTO public.book (isbn,author,description,image,location_library,title,volume) VALUES
-	 ('123-456-789','Dan Brown','','asdfasdf','CB-715','Inferno',1),
-	 ('456-789-123','Edgar Allan Poe','','asdfasdf','ID-963','El cuervo',1),
-	 ('789-456-123','Dante Alighieri','','asdfasdf','PD-159','La divina comedia',1),
-	 ('789-123-369','Daniel Goleman','','asdfasdf','lk-139','Inteligencia emocional',1),
-	 ('147-852-369','Len Bass','','asdfasdf','TU-795','Architecture in practice',1),
-	 ('587-963-762','Solomon','','asdfasdf','GB-279','Biología',1);
+INSERT INTO public.user_library (document,"password") VALUES
+	 ('82-965-6514','sannis_123');
+

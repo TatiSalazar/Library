@@ -1,7 +1,7 @@
 package com.universal.library.controller;
 
 import com.universal.library.dto.StudentDTO;
-import com.universal.library.entity.Student;
+import com.universal.library.entities.Student;
 import com.universal.library.exceptions.StudentNotFoundException;
 import com.universal.library.services.IStudentService;
 import org.modelmapper.ModelMapper;
@@ -23,7 +23,7 @@ public class StudentController {
     private ModelMapper modelMapper;
 
     private final Logger LOGGER =
-            (Logger) LoggerFactory.getLogger(LibraryController.class);
+            (Logger) LoggerFactory.getLogger(StudentController.class);
 
     public StudentController(IStudentService studentService, ModelMapper modelMapper) {
         this.studentService = studentService;

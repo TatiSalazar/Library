@@ -1,4 +1,4 @@
-package com.universal.library.entity;
+package com.universal.library.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -13,6 +13,7 @@ import lombok.*;
 public class Student {
     private String type_document;
     @Id
+    @GeneratedValue
     private String document;
     @NotNull
     private String name;

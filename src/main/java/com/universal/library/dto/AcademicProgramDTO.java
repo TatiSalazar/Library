@@ -1,6 +1,5 @@
 package com.universal.library.dto;
 
-import com.universal.library.entity.Faculty;
 import lombok.*;
 
 
@@ -11,6 +10,6 @@ import java.util.List;
 public class AcademicProgramDTO {
     private String name;
 
-    private Faculty faculty;
-    private List<StudentDTO> students;
+    private FacultyDTO faculty;
+    private List<String> students;
 }

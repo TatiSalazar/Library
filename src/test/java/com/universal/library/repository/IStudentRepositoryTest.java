@@ -1,24 +1,21 @@
 package com.universal.library.repository;
 
-import com.universal.library.entity.AcademicProgram;
-import com.universal.library.entity.Student;
+import com.universal.library.entities.AcademicProgram;
+import com.universal.library.entities.Student;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Configuration;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 //@DataJpaTest
 @AutoConfigureTestDatabase
-class StudentRepositoryTest {
+class IStudentRepositoryTest {
 
     @Autowired
-    private StudentRepository studentRepository;
+    private IStudentRepository IStudentRepository;
     @Autowired
     private TestEntityManager entityManager;
     @BeforeEach
@@ -36,7 +33,7 @@ class StudentRepositoryTest {
 
     @Test
     public void getStudentByDocument(){
-        Student student = studentRepository.findByDocument("82-965-6511");
+        Student student = IStudentRepository.findByDocument("82-965-6511");
         assertEquals(student.getDocument(), "82-965-6511");
     }
 

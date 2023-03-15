@@ -1,4 +1,4 @@
-package com.universal.library.entity;
+package com.universal.library.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -22,4 +22,5 @@ public class Book {
     private String location_library;
     private String description;
     private String image;
+    private String available;
 }
